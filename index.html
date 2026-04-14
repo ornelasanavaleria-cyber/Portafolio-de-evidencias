@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV | Ana Valeria Ornelas Cruces</title>
+  <style>
+    :root {
+      --fondo: #08111f;
+      --fondo-2: #0d1728;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-fuerte: rgba(255, 255, 255, 0.12);
+      --texto: #eef4ff;
+      --muted: #b8c5d9;
+      --primario: #7cc7ff;
+      --secundario: #5a8dff;
+      --terciario: #85ffd6;
+      --acento: rgba(124, 199, 255, 0.12);
+      --borde: rgba(255, 255, 255, 0.12);
+      --sombra: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radio: 24px;
+      --blur: blur(18px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--texto);
+      line-height: 1.55;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(90, 141, 255, 0.28), transparent 26%),
+        radial-gradient(circle at 85% 15%, rgba(133, 255, 214, 0.16), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(124, 199, 255, 0.12), transparent 30%),
+        linear-gradient(160deg, var(--fondo) 0%, var(--fondo-2) 52%, #050a14 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+      animation: flotar 10s ease-in-out infinite;
+    }
+
+    body::before {
+      top: -80px;
+      right: -60px;
+      background: rgba(90, 141, 255, 0.22);
+    }
+
+    body::after {
+      bottom: -100px;
+      left: -70px;
+      background: rgba(133, 255, 214, 0.14);
+      animation-delay: -4s;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(16px) translateX(10px); }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulso {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(124, 199, 255, 0.22); }
+      50% { box-shadow: 0 0 0 12px rgba(124, 199, 255, 0); }
+    }
+
+    .contenedor {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      animation: aparecer 0.9s ease;
+    }
+
+    .cv {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .columna-izquierda,
+    .columna-derecha {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+    }
+
+    .columna-izquierda {
+      position: sticky;
+      top: 22px;
+      overflow: hidden;
+    }
+
+    .cabecera {
+      padding: 34px 28px 24px;
+      background:
+        linear-gradient(140deg, rgba(124, 199, 255, 0.16), rgba(90, 141, 255, 0.08)),
+        linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border-bottom: 1px solid var(--borde);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cabecera::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -40px;
+      top: -30px;
+      background: radial-gradient(circle, rgba(124, 199, 255, 0.28), transparent 65%);
+    }
+
+    .nombre {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .puesto {
+      display: inline-block;
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #f7fbff;
+      background: linear-gradient(135deg, rgba(90, 141, 255, 0.7), rgba(124, 199, 255, 0.38));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+      animation: pulso 3s infinite;
+    }
+
+    .resumen-impacto {
+      font-size: 0.98rem;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      max-width: 95%;
+    }
+
+    .contacto,
+    .bloque-lateral {
+      padding: 24px 28px;
+      border-top: 1px solid var(--borde);
+    }
+
+    .titulo-lateral {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primario);
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .lista-contacto,
+    .lista-simple {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .lista-contacto li,
+    .lista-simple li {
+      font-size: 0.96rem;
+      color: var(--muted);
+    }
+
+    .lista-contacto a,
+    .github-card a,
+    .boton-github {
+      color: white;
+      text-decoration: none;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #eaf3ff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-4px);
+      background: rgba(124, 199, 255, 0.15);
+      border-color: rgba(124, 199, 255, 0.35);
+    }
+
+    .github-card {
+      position: relative;
+      padding: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(90, 141, 255, 0.22), rgba(133, 255, 214, 0.12)),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(124, 199, 255, 0.24);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .github-card::before {
+      content: "Repositorio destacado";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #08111f;
+      background: var(--terciario);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .github-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.28);
+      border-color: rgba(133, 255, 214, 0.35);
+    }
+
+    .github-card h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.02rem;
+      color: white;
+    }
+
+    .github-card p {
+      color: #d9e8fb;
+      font-size: 0.93rem;
+      margin-bottom: 14px;
+    }
+
+    .boton-github {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--secundario), var(--primario));
+      font-weight: 800;
+      box-shadow: 0 14px 24px rgba(90, 141, 255, 0.24);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+
+    .boton-github:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px rgba(90, 141, 255, 0.34);
+      filter: brightness(1.05);
+    }
+
+    .columna-derecha {
+      padding: 30px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+
+    .tarjeta-destacada,
+    .tarjeta-metricas,
+    .panel,
+    .item,
+    .franja-impacto {
+      background: var(--panel-fuerte);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarjeta-destacada:hover,
+    .tarjeta-metricas:hover,
+    .panel:hover,
+    .item:hover,
+    .franja-impacto:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 199, 255, 0.25);
+      box-shadow: 0 20px 38px rgba(0, 0, 0, 0.2);
+    }
+
+    .tarjeta-destacada,
+    .tarjeta-metricas {
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tarjeta-destacada::after,
+    .tarjeta-metricas::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -50px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 199, 255, 0.14), transparent 65%);
+    }
+
+    .tarjeta-destacada h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .tarjeta-destacada p,
+    .panel ul,
+    .item ul,
+    .footer-nota,
+    .franja-impacto p {
+      color: var(--muted);
+    }
+
+    .metricas {
+      display: grid;
+      gap: 12px;
+    }
+
+    .metrica {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .metrica:hover {
+      transform: scale(1.02);
+      background: rgba(124, 199, 255, 0.12);
+    }
+
+    .metrica strong {
+      display: block;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .metrica span {
+      color: #c8d8ee;
+      font-size: 0.92rem;
+    }
+
+    .franja-impacto {
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      background:
+        linear-gradient(135deg, rgba(124, 199, 255, 0.12), rgba(133, 255, 214, 0.08)),
+        rgba(255,255,255,0.05);
+    }
+
+    .franja-impacto h3 {
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .seccion {
+      margin-bottom: 26px;
+      animation: aparecer 0.8s ease both;
+    }
+
+    .seccion:nth-child(2) { animation-delay: 0.05s; }
+    .seccion:nth-child(3) { animation-delay: 0.1s; }
+    .seccion:nth-child(4) { animation-delay: 0.15s; }
+    .seccion:nth-child(5) { animation-delay: 0.2s; }
+
+    .encabezado-seccion {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .encabezado-seccion h3 {
+      font-size: 1.08rem;
+      color: white;
+      letter-spacing: -0.02em;
+    }
+
+    .encabezado-seccion span {
+      font-size: 0.8rem;
+      color: var(--primario);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .item {
+      position: relative;
+      padding: 18px 18px 18px 22px;
+      overflow: hidden;
+    }
+
+    .item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--terciario), var(--secundario));
+    }
+
+    .item-superior {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .item h4,
+    .panel h4 {
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 3px;
+    }
+
+    .empresa {
+      color: var(--primario);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .fecha {
+      color: #d3dded;
+      font-size: 0.9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .item ul,
+    .panel ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .grid-doble {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .footer-nota {
+      margin-top: 10px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(124, 199, 255, 0.28);
+      border-radius: 16px;
+      font-size: 0.93rem;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+
+    @media (max-width: 980px) {
+      .cv,
+      .hero,
+      .grid-doble {
+        grid-template-columns: 1fr;
+      }
+
+      .columna-izquierda {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+      }
+
+      .cabecera,
+      .contacto,
+      .bloque-lateral,
+      .columna-derecha {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .nombre {
+        font-size: 1.65rem;
+      }
+
+      .item-superior,
+      .encabezado-seccion {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .github-card::before {
+        position: static;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <main class="cv">
+      <aside class="columna-izquierda">
+        <section class="cabecera">
+          <div class="nombre">Ana Valeria<br>Ornelas Cruces</div>
+          <div class="puesto">Licenciada en Economía</div>
+          <p class="resumen-impacto">
+            Economista con enfoque en análisis macroeconómico del sector público, manejo de bases de datos oficiales (INEGI, Banxico, IMSS) y automatización de información económica para apoyar la toma de decisiones.
+          </p>
+        </section>
+
+        <section class="contacto">
+          <div class="titulo-lateral">Contacto</div>
+          <ul class="lista-contacto">
+            <li><strong>Tel:</strong> <a href="tel:+525527428667">55 2742 8667</a></li>
+            <li><strong>Correo:</strong> <a href="mailto:ornelasanavaleria@gmail.com">ornelasanavaleria@gmail.com</a></li>
+            <li><strong>Ubicación:</strong> Ciudad de México</li>
+          </ul>
+        </section>
+
+        <section class="bloque-lateral">
+          <div class="titulo-lateral">GitHub y portafolio</div>
+          <div class="github-card">
+            <h4>Portafolio de evidencias</h4>
+            <p>
+              Repositorio con evidencias, proyectos y materiales que respaldan el perfil técnico y analítico.
+            </p>
+            <a class="boton-github" href="https://github.com/ornelasanavaleria-cyber/Portafolio-de-evidencias" target="_blank" rel="noopener noreferrer">
+              Ver repositorio ↗
+            </a>
+          </div>
+        </section>
+
+        <section class="bloque-lateral">
+          <div class="titulo-lateral">Fortalezas clave</div>
+          <div class="chips">
+            <span class="chip">Series de tiempo</span>
+            <span class="chip">Análisis macroeconómico</span>
+            <span class="chip">Excel</span>
+            <span class="chip">Stata</span>
+            <span class="chip">Python</span>
+            <span class="chip">R</span>
+            <span class="chip">Bases de datos</span>
+            <span class="chip">Visualización</span>
+          </div>
+        </section>
+
+        <section class="bloque-lateral">
+          <div class="titulo-lateral">Idiomas</div>
+          <ul class="lista-simple">
+            <li><strong>Inglés:</strong> TOEFL ITP B1 · Comprensión lectora B2</li>
+            <li><strong>Francés:</strong> A2</li>
+          </ul>
+        </section>
+
+        <section class="bloque-lateral">
+          <div class="titulo-lateral">Formación académica</div>
+          <ul class="lista-simple">
+            <li><strong>Licenciatura en Economía</strong><br>Facultad de Economía, UNAM<br>2019–2024</li>
+            <li><strong>Diplomado en Estadística Aplicada</strong><br>Facultad de Economía, UNAM<br>2026 · En curso</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="columna-derecha">
+        <div class="hero">
+          <div class="tarjeta-destacada">
+            <h2>Perfil alineado a la vacante</h2>
+            <p>
+              Economista egresada de la UNAM con experiencia en el sector público y financiero, especializada en análisis e interpretación de información macroeconómica. Cuenta con manejo práctico de bases de datos provenientes de fuentes oficiales (INEGI, Banxico), automatización en Excel y Python, y uso de herramientas econométricas para el análisis de series de tiempo. Ha participado en la elaboración de reportes y visualizaciones para la toma de decisiones, con alto nivel de atención al detalle y enfoque en cuentas nacionales.
+            </p>
+          </div>
+
+          <div class="tarjeta-metricas">
+            <div class="metricas">
+              <div class="metrica">
+                <strong>Experiencia multisectorial</strong>
+                <span>Hacienda, Banxico y sector financiero.</span>
+              </div>
+              <div class="metrica">
+                <strong>Base técnica sólida</strong>
+                <span>Excel, Stata, R y Python aplicados a datos económicos.</span>
+              </div>
+              <div class="metrica">
+                <strong>Dominio de datos oficiales</strong>
+                <span>INEGI, Banxico y bases macroeconómicas estructuradas.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="franja-impacto">
+          <h3>Ajuste directo al puesto de Analista Económico</h3>
+          <p>
+            El perfil combina experiencia en sector público (SHCP, Banxico), habilidades en análisis macroeconómico y manejo de bases de datos oficiales, cumpliendo directamente con los requerimientos de análisis, automatización y elaboración de reportes solicitados para la posición.
+          </p>
+        </div>
+
+        <section class="seccion">
+          <div class="encabezado-seccion">
+            <h3>Experiencia profesional</h3>
+            <span>Trayectoria reciente</span>
+          </div>
+
+          <div class="timeline">
+            <article class="item">
+              <div class="item-superior">
+                <div>
+                  <h4>Prácticas Profesionales en Análisis Macroeconómico del Sector Externo</h4>
+                  <div class="empresa">Secretaría de Hacienda y Crédito Público</div>
+                </div>
+                <div class="fecha">abril 2026 – actual</div>
+              </div>
+              <ul>
+                <li>Procesamiento y análisis de indicadores macroeconómicos del sector externo utilizando fuentes oficiales como INEGI y Banxico.</li>
+                <li>Limpieza, gestión y automatización de bases de datos económicas mediante Excel, Stata y Python.</li>
+                <li>Elaboración de reportes y visualizaciones para la interpretación de variables macroeconómicas en presentaciones ejecutivas.</li>
+              </ul>
+            </article>
+
+            <article class="item">
+              <div class="item-superior">
+                <div>
+                  <h4>Trainee de Analista de Crédito</h4>
+                  <div class="empresa">Grupo Financiero Mifel</div>
+                </div>
+                <div class="fecha">octubre 2025 – enero 2026</div>
+              </div>
+              <ul>
+                <li>Elaboración de corridas financieras y flujos de efectivo históricos y proyectados.</li>
+                <li>Alimentación y mantenimiento de bases de datos crediticias.</li>
+              </ul>
+            </article>
+
+            <article class="item">
+              <div class="item-superior">
+                <div>
+                  <h4>Servicio Social en Análisis de Crédito Educativo</h4>
+                  <div class="empresa">Banco de México</div>
+                </div>
+                <div class="fecha">marzo 2023 – septiembre 2023</div>
+              </div>
+              <ul>
+                <li>Apoyo en la elaboración de informes estadísticos y análisis de solicitudes de crédito educativo.</li>
+                <li>Manejo y limpieza de bases de datos en Excel.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="seccion">
+          <div class="encabezado-seccion">
+            <h3>Experiencia en investigación</h3>
+            <span>Valor analítico</span>
+          </div>
+          <article class="item">
+            <div class="item-superior">
+              <div>
+                <h4>Becaria en Investigación Económica</h4>
+                <div class="empresa">Facultad de Economía, UNAM</div>
+              </div>
+              <div class="fecha">enero 2024 – diciembre 2024</div>
+            </div>
+            <ul>
+              <li>Obtención y procesamiento de indicadores económicos.</li>
+              <li>Elaboración de gráficos en Stata para presentar hallazgos de forma clara.</li>
+              <li>Redacción metodológica y desarrollo de análisis estadístico propio.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="seccion">
+          <div class="encabezado-seccion">
+            <h3>Habilidades técnicas</h3>
+            <span>Herramientas</span>
+          </div>
+
+          <div class="grid-doble">
+            <div class="panel">
+              <h4>Análisis y manejo de datos</h4>
+              <ul>
+                <li><strong>Excel:</strong> limpieza, automatización y gestión de bases de datos; tablas dinámicas, Power Query y funciones avanzadas.</li>
+                <li><strong>Stata:</strong> análisis descriptivo e inferencial, desestacionalización y modelos ARIMA.</li>
+                <li><strong>R:</strong> visualización, factores estacionales, filtro Hodrick-Prescott y regresión.</li>
+                <li><strong>Python:</strong> manejo de pandas y numpy; estimación de modelos estadísticos.</li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h4>Lo que proyecta este perfil</h4>
+              <ul>
+                <li>Capacidad para transformar datos en insumos útiles para la toma de decisiones.</li>
+                <li>Orden y criterio para trabajar con bases económicas y financieras.</li>
+                <li>Formación técnica con exposición real a instituciones de alto nivel.</li>
+                <li>Potencial para crecer rápido en áreas analíticas, financieras o de investigación.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="seccion">
+          <div class="encabezado-seccion">
+            <h3>Formación complementaria</h3>
+            <span>Internacionalización</span>
+          </div>
+          <div class="panel">
+            <ul>
+              <li>Curso de inglés en inmersión, comunicación oral B2.1 — UNAM-Canadá, Gatineau (2024).</li>
+              <li>Perfeccionamiento de lengua inglesa y cultura — Centro de Estudios Mexicanos UNAM-Boston (2021).</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="footer-nota">
+          <strong>Sugerencia clave:</strong> en el repositorio conviene fijar 3 proyectos estrella con una portada clara, capturas, objetivo, herramientas usadas y resultado. Eso haría que el botón de GitHub no solo se vea bonito, sino que convierta muy bien en entrevista.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
